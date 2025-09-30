@@ -45,7 +45,21 @@
     }
     .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
     .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}
-    .brand img{height:28px;width:auto;display:block}
+    :root{
+        /* add these near your other tokens */
+        --logo: 48px;         /* desktop logo height */
+        --logo-mobile: 34px;  /* mobile logo height */
+      }
+      
+      /* replace the old rule with this */
+      .brand img { height: var(--logo); width:auto; display:block; }
+      @media (max-width: 520px){
+        .brand img { height: var(--logo-mobile); }
+      }
+      
+      /* optional: bump header height a bit so it breathes */
+      .nav { height: 72px; }  /* was 64px */
+
     .brand .name{color:var(--text)}
     .nav a{color:var(--text);margin-left:18px;opacity:.92}
     .nav a.btn{margin-left:10px;text-decoration:none}
