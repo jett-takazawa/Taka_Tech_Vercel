@@ -15,76 +15,87 @@
   <meta property="og:image" content="https://www.takazawaworks.com/og.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Favicon placeholders (replace with your own) -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
+  <!-- Favicon -->
+  <link rel="icon" href="assets/logo.png">
 
   <!-- Fonts (system stack for speed) -->
   <style>
-    :root {
-      --bg: #0b0c0f;       /* near-black */
-      --panel: #12141a;    /* dark card */
-      --text: #e7ebf0;     /* light text */
-      --muted: #a4acb9;    /* secondary text */
-      --accent: #4cc9f0;   /* electric blue */
-      --accent-2: #00e5a8; /* emerald */
-      --max: 1100px;       /* content width */
-      --radius: 16px;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    :root{
+      /* === TAKAZAWA WORKS THEME: black / white / minimal red === */
+      --bg:#0b0c0f;          /* near-black */
+      --panel:#121212;       /* dark card */
+      --text:#f2f3f5;        /* white-ish text */
+      --muted:#b4bac3;       /* secondary */
+      --brand:#d33a3a;       /* primary red (logo dot) */
+      --brand-dark:#8f2323;  /* darker red for hover/borders */
+      --max:1100px;
+      --radius:16px;
+      --border:#1f1f1f;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
     }
-    * { box-sizing: border-box }
-    html, body { margin:0; padding:0; background:var(--bg); color:var(--text); font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; }
-    a { color: var(--accent); text-decoration: none }
-    a:hover { text-decoration: underline }
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
-    header {
-      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(8px);
-      background: rgba(11,12,15,.7); border-bottom: 1px solid #1e2230;
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+
+    header{
+      position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);
+      background:rgba(11,12,15,.75);border-bottom:1px solid var(--border)
     }
-    .nav { display:flex; align-items:center; justify-content:space-between; height:64px; }
-    .brand { display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px }
-    .brand .dot { width:10px; height:10px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--accent-2)); display:inline-block }
-    .nav a { color: var(--text); margin-left: 18px; opacity:.9 }
-    .nav a.btn { margin-left: 10px; text-decoration:none }
-    .btn {
-      display:inline-block; padding:12px 18px; border-radius:999px; font-weight:600;
-      background: linear-gradient(135deg,var(--accent),var(--accent-2));
-      color:#001018; box-shadow: var(--shadow);
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}
+    .brand img{height:28px;width:auto;display:block}
+    .brand .name{color:var(--text)}
+    .nav a{color:var(--text);margin-left:18px;opacity:.92}
+    .nav a.btn{margin-left:10px;text-decoration:none}
+
+    .btn{
+      display:inline-block;padding:12px 18px;border-radius:999px;font-weight:700;
+      background:var(--brand);color:#fff;border:1px solid var(--brand);
+      box-shadow:var(--shadow);transition:transform .08s ease,background .15s ease
     }
-    .btn.secondary { background: transparent; color: var(--text); border:1px solid #2b3242; box-shadow:none }
-    .hero {
-      padding: 72px 0 32px; background:
-        radial-gradient(800px 400px at 10% -10%, rgba(76,201,240,.18), transparent 60%),
-        radial-gradient(800px 400px at 90% -10%, rgba(0,229,168,.18), transparent 60%);
+    .btn:hover{transform:translateY(-1px);background:var(--brand-dark)}
+    .btn.secondary{background:transparent;color:var(--text);border:1px solid #2b2b2b;box-shadow:none}
+    .btn.secondary:hover{border-color:var(--brand-dark);color:#fff}
+
+    .hero{
+      padding:72px 0 32px;background:
+        radial-gradient(900px 420px at 12% -10%, rgba(211,58,58,.14), transparent 60%),
+        radial-gradient(900px 420px at 88% -10%, rgba(143,35,35,.10), transparent 60%);
     }
-    .hero .grid { display:grid; gap:26px; grid-template-columns: 1.1fr .9fr; align-items:center }
-    @media (max-width: 920px){ .hero .grid { grid-template-columns: 1fr } }
-    h1 { font-size: clamp(32px, 4vw, 48px); line-height:1.15; margin: 0 0 12px }
-    .lead { font-size: clamp(16px, 2.1vw, 20px); color: var(--muted); margin: 0 0 22px }
-    .chip { display:inline-block; padding:6px 10px; border:1px solid #2b3242; border-radius:999px; color:#b8c2d0; font-size:12px; letter-spacing:.3px; text-transform:uppercase }
-    .panel { background: var(--panel); border:1px solid #1e2230; border-radius: var(--radius); box-shadow: var(--shadow) }
-    .card-grid { display:grid; gap:16px; grid-template-columns: repeat(3, 1fr); }
-    @media (max-width: 920px){ .card-grid { grid-template-columns: 1fr; } }
-    .card { padding:22px; border-radius: var(--radius); border:1px solid #1e2230; background: #0e1117 }
-    .card h3 { margin:0 0 8px; font-size:18px }
-    .muted { color: var(--muted) }
-    section { padding: 56px 0 }
-    .section-title { font-size:26px; margin:0 0 8px }
-    .section-sub { color:var(--muted); margin:0 0 20px }
-    .list { display:grid; gap: 10px; padding:0; margin: 0; list-style: none }
-    .list li::before { content:"✓"; color: var(--accent); margin-right:8px }
-    .steps { display:grid; gap:14px; grid-template-columns: repeat(3, 1fr) }
-    @media (max-width: 920px){ .steps { grid-template-columns: 1fr } }
-    .step { padding:20px; border:1px dashed #2b3242; border-radius: var(--radius) }
-    .step b { display:block; margin-bottom:6px; font-size:16px }
-    .kpis { display:flex; gap:16px; flex-wrap:wrap }
-    .kpi { flex:1 1 160px; padding:16px; border-radius:12px; border:1px solid #1e2230; background:#0e1117; text-align:center }
-    .kpi b { font-size:22px; display:block }
-    .cta { text-align:center; padding:48px 20px; border:1px solid #1e2230; background:linear-gradient(135deg,rgba(76,201,240,.06),rgba(0,229,168,.06)); border-radius: var(--radius) }
-    footer { border-top:1px solid #1e2230; padding:26px 0; color:#97a3b5; font-size:14px }
-    .footer-links a { color:#97a3b5; margin-right:16px }
-    .hide { display:none !important }
-    /* Smooth scroll */
-    html { scroll-behavior:smooth }
+    .hero .grid{display:grid;gap:26px;grid-template-columns:1.1fr .9fr;align-items:center}
+    @media (max-width:920px){.hero .grid{grid-template-columns:1fr}}
+    h1{font-size:clamp(32px,4vw,48px);line-height:1.15;margin:0 0 12px}
+    .lead{font-size:clamp(16px,2.1vw,20px);color:var(--muted);margin:0 0 22px}
+    .chip{display:inline-block;padding:6px 10px;border:1px solid #2b2b2b;border-radius:999px;color:#cbd3df;font-size:12px;letter-spacing:.3px;text-transform:uppercase}
+
+    .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .card-grid{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
+    @media (max-width:920px){.card-grid{grid-template-columns:1fr}}
+    .card{padding:22px;border-radius:var(--radius);border:1px solid var(--border);background:#0f0f10}
+    .card h3{margin:0 0 8px;font-size:18px}
+    .muted{color:var(--muted)}
+    section{padding:56px 0}
+    .section-title{font-size:26px;margin:0 0 8px}
+    .section-sub{color:var(--muted);margin:0 0 20px}
+    .list{display:grid;gap:10px;padding:0;margin:0;list-style:none}
+    .list li{position:relative;padding-left:22px}
+    .list li::before{content:"";position:absolute;left:0;top:.42em;width:10px;height:10px;border-radius:50%;background:var(--brand)}
+    .steps{display:grid;gap:14px;grid-template-columns:repeat(3,1fr)}
+    @media (max-width:920px){.steps{grid-template-columns:1fr}}
+    .step{padding:20px;border:1px dashed #2b2b2b;border-radius:var(--radius)}
+    .step b{display:block;margin-bottom:6px;font-size:16px}
+    .kpis{display:flex;gap:16px;flex-wrap:wrap}
+    .kpi{flex:1 1 160px;padding:16px;border-radius:12px;border:1px solid var(--border);background:#0f0f10;text-align:center}
+    .kpi b{font-size:22px;display:block}
+    .cta{text-align:center;padding:48px 20px;border:1px solid var(--border);
+      background:linear-gradient(135deg, rgba(211,58,58,.08), rgba(143,35,35,.06));
+      border-radius:var(--radius)}
+    footer{border-top:1px solid var(--border);padding:26px 0;color:#97a3b5;font-size:14px}
+    .footer-links a{color:#97a3b5;margin-right:16px}
+    .hide{display:none !important}
+    html{scroll-behavior:smooth}
   </style>
 
   <!-- JSON-LD (Organization) -->
@@ -110,8 +121,10 @@
   <header>
     <div class="wrap nav">
       <div class="brand">
-        <span class="dot" aria-hidden="true"></span>
-        <a href="#" style="font-weight:800; color:var(--text); text-decoration:none;">Takazawa Works</a>
+        <!-- Place your logo file at /assets/logo.png -->
+        <a href="#" class="name" aria-label="Takazawa Works home">
+          <img src="assets/logo.png" alt="Takazawa Works logo"> Takazawa Works
+        </a>
       </div>
       <nav>
         <a href="#services">Services</a>
@@ -279,7 +292,7 @@
 
   <!-- Simple Privacy/Terms modals -->
   <div id="policy" class="hide" style="position:fixed;inset:0;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;padding:20px">
-    <div style="max-width:800px;background:#0e1117;border:1px solid #1e2230;border-radius:16px; padding:24px; box-shadow:var(--shadow)">
+    <div style="max-width:800px;background:#0f0f10;border:1px solid var(--border);border-radius:16px; padding:24px; box-shadow:var(--shadow)">
       <div style="display:flex; justify-content:space-between; align-items:center; gap:12px">
         <h3 id="policy-title" style="margin:0">Policy</h3>
         <button onclick="togglePolicy()" class="btn secondary" aria-label="Close" style="padding:6px 10px">Close</button>
@@ -293,21 +306,19 @@
 
   <!-- Scripts -->
   <script>
-    // Year + safe email reveal (avoid simple bots)
+    // Year + safe email reveal
     document.getElementById('y').textContent = new Date().getFullYear();
     const user = 'works.takazawa';
-    const host = 'gmail.com'; // change to your custom domain when ready (e.g., 'takazawaworks.com')
+    const host = 'gmail.com';
     const mail = user + '@' + host;
     const mailto = 'mailto:' + mail + '?subject=Discovery%20Call%20Request&body=Hi%20Takazawa%20Works,%0A%0AWe%27d%20like%20help%20with...';
     const mailBtn = document.getElementById('mailto-btn');
     mailBtn.href = mailto;
     mailBtn.textContent = 'Email ' + mail;
 
-    // Optional Calendly embed (unhide if you set your link)
+    // Calendly embed: unhide only if you replaced the placeholder
     const c = document.getElementById('calendly-inline-widget');
-    if (c && c.dataset.url.includes('calendly.com/your-handle')) {
-      // leave hidden, fallback to email
-    } else if (c) {
+    if (c && !c.dataset.url.includes('your-handle')) {
       c.classList.remove('hide');
       const s = document.createElement('script');
       s.src = 'https://assets.calendly.com/assets/external/widget.js';
@@ -316,14 +327,12 @@
     }
 
     // Simple modal toggler for Privacy/Terms
-    function togglePolicy(which) {
-      const modal = document.getElementById('policy');
-      if (which) {
-        document.getElementById('policy-title').textContent = which === 'privacy' ? 'Privacy' : 'Terms';
-      }
+    function togglePolicy(which){
+      const modal=document.getElementById('policy');
+      if(which){document.getElementById('policy-title').textContent = which==='privacy' ? 'Privacy' : 'Terms'}
       modal.classList.toggle('hide');
     }
-    window.togglePolicy = togglePolicy;
+    window.togglePolicy=togglePolicy;
   </script>
 
   <!-- Google Analytics (optional) -->
