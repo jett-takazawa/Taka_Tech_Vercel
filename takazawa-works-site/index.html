@@ -281,9 +281,9 @@
         <div class="card" style="padding:24px">
           <div id="book" class="cta">
             <h3 style="margin-top:0">Book a Discovery Call</h3>
-            <!-- Calendly inline embed (replace URL with your scheduling link) -->
-            <div class="hide" id="calendly-inline-widget" data-url="https://calendly.com/works-takazawa/30min" style="min-width:320px;height:700px;"></div>
-            <p class="muted" id="calendly-fallback">Prefer email? Click below and I’ll reply quickly.</p>
+            <!-- Calendly inline widget begin -->
+            <div class="calendly-inline-widget" data-url="https://calendly.com/works-takazawa/30min" style="min-width:320px;height:700px;"></div>
+            <p class="muted hide" id="calendly-fallback">Prefer email? Click below and I'll reply quickly.</p>
             <div style="margin-top:12px">
               <a class="btn" id="mailto-btn" href="#" rel="nofollow">Email me</a>
               <a class="btn secondary" href="#services">See services</a>
@@ -333,15 +333,10 @@
     mailBtn.textContent = 'Email ' + mail;
 
     // Calendly embed
-    const c = document.getElementById('calendly-inline-widget');
-    if (c) {
-      c.classList.remove('hide');
-      document.getElementById('calendly-fallback').classList.add('hide');
-      const s = document.createElement('script');
-      s.src = 'https://assets.calendly.com/assets/external/widget.js';
-      s.async = true;
-      document.body.appendChild(s);
-    }
+    const s = document.createElement('script');
+    s.src = 'https://assets.calendly.com/assets/external/widget.js';
+    s.async = true;
+    document.head.appendChild(s);
 
     // Simple modal toggler for Privacy/Terms
     function togglePolicy(which){
