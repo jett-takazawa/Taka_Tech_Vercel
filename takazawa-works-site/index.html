@@ -328,12 +328,15 @@
     const mailto = 'mailto:' + mail + '?subject=Discovery%20Call%20Request&body=Hi%20Takazawa%20Works,%0A%0AWe%27d%20like%20help%20with...';
     const mailBtn = document.getElementById('mailto-btn');
     mailBtn.href = mailto;
+    mailBtn.target = '_blank';
+    mailBtn.rel = 'noopener noreferrer';
     mailBtn.textContent = 'Email ' + mail;
 
-    // Calendly embed: unhide only if you replaced the placeholder
+    // Calendly embed
     const c = document.getElementById('calendly-inline-widget');
-    if (c && !c.dataset.url.includes('works-takazawa')) {
+    if (c) {
       c.classList.remove('hide');
+      document.getElementById('calendly-fallback').classList.add('hide');
       const s = document.createElement('script');
       s.src = 'https://assets.calendly.com/assets/external/widget.js';
       s.async = true;
